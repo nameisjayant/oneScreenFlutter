@@ -54,14 +54,21 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   uses-material-design: true
+  #fonts
   fonts:
     - family: SourceSansPro
       fonts:
-        - asset: assets/onts/sourceSansProRegular.otf
+        - asset: assets/fonts/sourceSansProRegular.otf
         - asset: assets/fonts/sourceSansProSemibold.otf
- #images
+  #images
   assets:
     - assets/icons/search_icon.svg
+    - assets/images/baseball.png
+    - assets/images/basketball.png
+    - assets/images/cricket.png
+    - assets/images/rubgy.png
+    - assets/images/soccer.png
+    - assets/images/search.png
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
