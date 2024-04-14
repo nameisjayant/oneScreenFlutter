@@ -34,6 +34,7 @@ class _MatchScoreScreenState extends State<MatchScoreScreen> {
     SportModal(id: 5, title: 'Cricket', icon: ImagePath.cricket)
   ];
   int selectedIndex = 0;
+  final List<String> stats = ['D', 'L', 'Ga', 'Gd', 'Pts'];
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +48,11 @@ class _MatchScoreScreenState extends State<MatchScoreScreen> {
               setState(() {
                 selectedIndex = val;
               });
-            })
+            }),
+        spacerHeight(height: 24),
+        header(flag: ImagePath.spainFlag, title: 'La Liga', country: 'Spain'),
+        spacerHeight(height: 16),
+        statsSection()
       ],
     );
   }
@@ -101,7 +106,6 @@ class _MatchScoreScreenState extends State<MatchScoreScreen> {
     );
   }
 
-
   // sport selection Row
   Widget selectionRow(
       {required String title,
@@ -110,7 +114,7 @@ class _MatchScoreScreenState extends State<MatchScoreScreen> {
       required bool selected,
       required Function(int) onValueUpdate}) {
     return Padding(
-      padding: const EdgeInsets.only(right: 8.0,left: 16),
+      padding: const EdgeInsets.only(right: 8.0, left: 16),
       child: InkWell(
         onTap: () {
           onValueUpdate(index);
@@ -119,9 +123,6 @@ class _MatchScoreScreenState extends State<MatchScoreScreen> {
         splashColor: Colors.transparent,
         child: Container(
           decoration: BoxDecoration(
-              color: selected
-                  ? AppColors.matchTextField
-                  : AppColors.matchTextField,
               gradient: selected
                   ? const LinearGradient(colors: [
                       AppColors.matchLightOrange,
@@ -149,7 +150,7 @@ class _MatchScoreScreenState extends State<MatchScoreScreen> {
                       style: const TextStyle(
                           color: Colors.white,
                           fontSize: 14,
-                          fontWeight: FontWeight.w900,
+                          fontWeight: FontWeight.w700,
                           fontFamily: 'SourceSansPro'),
                     ),
                   )
@@ -158,6 +159,116 @@ class _MatchScoreScreenState extends State<MatchScoreScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget header(
+      {required String flag, required String title, required String country}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Row(
+        children: [
+          Row(
+            children: [
+              Image.asset(
+                flag,
+                height: 24,
+                width: 24,
+              ),
+              spacerWidth(),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: 'SourceSansPro'),
+                  ),
+                  Text(
+                    country,
+                    style: const TextStyle(
+                        color: AppColors.matchGray,
+                        fontSize: 12,
+                        fontWeight: FontWeight.normal,
+                        fontFamily: 'SourceSansPro'),
+                  )
+                ],
+              )
+            ],
+          ),
+          const Spacer(),
+          const Icon(
+            Icons.arrow_forward_ios,
+            color: Colors.white,
+            size: 16,
+          )
+        ],
+      ),
+    );
+  }
+
+  // Stats Section
+  Widget statsSection(){
+   return Padding(
+     padding: const EdgeInsets.all(16.0),
+     child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.matchTextField,
+          borderRadius: BorderRadius.circular(19)
+        ),
+       child: Padding(
+         padding: const EdgeInsets.all(16),
+         child: statsRow(),
+       ),
+      ),
+   );
+  }
+
+
+  // stats row
+  Widget statsRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text(
+          "Team",
+          style: TextStyle(
+              color: Colors.white,
+              fontSize: 12,
+              fontWeight: FontWeight.normal,
+              fontFamily: 'SourceSansPro'),
+        ),
+        const Spacer(),
+        Column(
+          children: [
+            Row(
+              children: [
+                for (int i = 0; i < stats.length; i++)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: Text(
+                      stats[i],
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
+                          fontFamily: 'SourceSansPro'),
+                    ),
+                  )
+              ],
+            ),
+            spacerHeight(),
+            Container(
+              width: 200,
+              height: 1,
+              color: AppColors.matchBg,
+            )
+          ],
+        )
+      ],
     );
   }
 }
