@@ -69,6 +69,15 @@ flutter:
     - assets/images/rubgy.png
     - assets/images/soccer.png
     - assets/images/search.png
+    - assets/images/spain_flag.png
+    - assets/images/atletico.png
+    - assets/images/barcelona.png
+    - assets/images/england.png
+    - assets/images/leicester_city.png
+    - assets/images/liverpool.png
+    - assets/images/man_city.png
+    - assets/images/realmadrid.png
+    - assets/images/Villareal.png
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
